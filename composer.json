@@ -1,0 +1,25 @@
+{
+    "name": "unapi/gsm-mts",
+    "description": "Unapi GSM MTS service wrapper",
+    "keywords": ["Unapi", "Guzzle", "async", "promise", "GSM", "MTS"],
+    "type": "library",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.1.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "unapi/unapi": "^1.1.1",
+        "unapi/anticaptcha-common": "^1.3.2",
+        "psr/log": "^1.0"
+    },
+    "autoload" : {
+        "psr-4": {
+            "unapi\\gsm\\mts\\": "src"
+        }
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5"
+    }
+}
