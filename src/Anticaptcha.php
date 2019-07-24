@@ -2,9 +2,11 @@
 namespace unapi\gsm\mts;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Promise\FulfilledPromise;
 use Psr\Http\Message\ResponseInterface;
 use unapi\anticaptcha\common\AnticaptchaInterface;
 use unapi\anticaptcha\common\AnticaptchaServiceInterface;
+use unapi\anticaptcha\common\dto\CaptchaSolvedDto;
 use unapi\anticaptcha\common\task\ReCaptcha2Task;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -28,9 +30,8 @@ class Anticaptcha implements AnticaptchaInterface
         $body = $response->getBody()->getContents();
         preg_match("/data-sitekey=\"([^\"]*)\"/ims", $body, $matches);
 
-        if (!array_key_exists(1, $matches)) {
-            var_dump($body);
-            throw new \RuntimeException('Site key  not found');
+        if (!array_key_exists(1, $matches) || empty($matches[1])) {
+            return new FulfilledPromise(new CaptchaSolvedDto(''));
         }
 
         return $this->service->resolve(new ReCaptcha2Task([
