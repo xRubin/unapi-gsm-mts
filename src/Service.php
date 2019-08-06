@@ -167,7 +167,7 @@ class Service implements ServiceInterface, LoggerAwareInterface
         ])->then(function (ResponseInterface $response) {
             $this->getLogger()->info($data = $response->getBody()->getContents());
 
-            if (preg_match("/Баланс: <span class=\"\"><b>(.*)<\/b> руб<\/span>/ims", $data, $matches))
+            if (preg_match("/<strong>(.*)<\/strong> руб<\/span>/ims", $data, $matches))
                 return new FulfilledPromise((float)$matches[1]);
 
             throw new BalanceNotFoundException();

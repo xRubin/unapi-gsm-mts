@@ -10,7 +10,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Promise\FulfilledPromise;
 use unapi\anticaptcha\common\dto\CaptchaSolvedDto;
 
-class mtsServiceTest extends TestCase
+class MtsServiceTest extends TestCase
 {
     protected function getAnticaptcha(): AnticaptchaInterface
     {
